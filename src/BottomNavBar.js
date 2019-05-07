@@ -11,12 +11,14 @@ class NavBar extends Component {
     };
   }
 
-  componentDidMount(){
-     this.setState({navinfo: [
+  componentDidMount() {
+    this.setState({
+      navinfo: [
         { link: `/album/${getLastPhoto().uuid}`, icon: "image" },
         { link: "/camera", icon: "camera" },
         { link: "/album", icon: "images" }
-      ]}) 
+      ]
+    });
   }
 
   render() {
@@ -26,7 +28,7 @@ class NavBar extends Component {
           {this.state.navinfo.map(a => (
             <Menu.Item>
               <Link to={a.link} activeClassName=" green">
-                <Icon name={a.icon} size="huge" />
+                <Icon name={a.icon} size="big" />
               </Link>
             </Menu.Item>
           ))}
