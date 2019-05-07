@@ -50,7 +50,7 @@ class Camera extends Component {
                     className="grow-large pointer "
                   />
                   <Icon
-                    onClick={this.capture}
+                    onClick={this.handleChangeCamera}
                     name="nintendo switch"
                     size="big"
                     circular
