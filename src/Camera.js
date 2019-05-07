@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Container, Segment, Icon, Grid } from "semantic-ui-react";
+import { Container, Segment, Icon, Grid, Button } from "semantic-ui-react";
 import Webcam from "react-webcam";
 import { saveToCamera } from "./static/cameraMemory";
 
 class Camera extends Component {
   constructor(props) {
     super(props);
-    this.state = { imageSrc: "" };
+    this.state = { imageSrc: "", facingMode: "user" };
   }
 
   setRef = webcam => {
@@ -19,27 +19,45 @@ class Camera extends Component {
     console.log(imageSrc);
   };
 
+  handleChangeCamera = () => {
+    this.state.facingMode === "user"
+      ? this.setState({ facingMode: { exact: "environment" } })
+      : this.setState({ facingMode: "user" });
+  };
+
   render() {
+    const videoConstraints = { facingMode: this.state.facingMode };
     return (
-      <Container className="mt6">
+      <Container className="mt4">
         <Segment>
           <Webcam
             audio={false}
             ref={this.setRef}
             screenshotFormat="image/jpeg"
             className="w-100 ba br3"
+            videoConstraints={videoConstraints}
           />
           <Segment>
             <Grid>
-              <Grid.Column textAlign="center">
-                <Icon
-                  onClick={this.capture}
-                  name="camera"
-                  size="big"
-                  circular
-                  inverted
-                  className="grow-large pointer"
-                />
+              <Grid.Column className="">
+                <div className="flex justify-around">
+                  <Icon
+                    onClick={this.capture}
+                    name="camera"
+                    size="big"
+                    circular
+                    inverted
+                    className="grow-large pointer "
+                  />
+                  <Icon
+                    onClick={this.capture}
+                    name="nintendo switch"
+                    size="big"
+                    circular
+                    inverted
+                    className="grow-large pointer "
+                  />
+                </div>
               </Grid.Column>
             </Grid>
           </Segment>
